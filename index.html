@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Javascript OOP</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -47,150 +47,168 @@
                     </section>
                     <section data-markdown>
                         <script type="text/template">
-                            ### Creating Objects
-
-                            ```
-                            var obj = {
-                                hello: 'world',
-                                id: 1234
-                            };
-
-                            var obj = new Object();
-                            obj.hello = 'world';
-                            obj.id = 1234;
-
-                            var obj = Object.create(null, {
-                                hello: { value: "world" },
-                                id: { value: 1234 }
-                            });
-                            ```
-
+                            #### JavaScript is an object-based language based on prototypes, rather than being class-based.
+                            That means that javascript doesnt have classes or instances like other languages, it simply has objects
                         </script>
                     </section>
-                    <section data-markdown>
+                    <section  data-markdown>
                         <script type="text/template">
-                            ### What about custom objects?
-
-                            ```
-                            var carInstance = {
-                                drive: function(direction) { ... },
-                                stop: function() { ... }
-                                speed: 65
-                                mileage: 80000
-                            };
-                            ```
-
+                            ### There are three popular patterns for simulating classes
+                            - Functional/Module Pattern
+                            - Constructor Pattern
+                            - Prototype Pattern
                         </script>
                     </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Functional/Module Pattern
+                    <section>
+                      <section data-markdown>
+                      <script type="text/template">
+                          ### Functional/Module Pattern
+                          ```
+                          var Car = (function () {
+                            var MAX_SPEED = 80;
 
-                            ```
-                            function Car() {
-                                var wearAndTear = 0;
-                                function startEngine() {
-                                    ...
+                            return function Car(name) {
+                              var car = { 
+                                    name: name,
+                                    drive: drive
+                                  },
+                                speed = 0;
+
+                              // public methods
+                              function drive() {
+                                if (!car.engineIsWorking) {
+                                  startEngine();
                                 }
 
-                                function turn() {
-                                    ..
-                                }
+                                return `They see me rolling, on my ${car.name}`
+                              }
 
-                                return  {
-                                    drive: function(direction) { ... }
-                                    stop: function() { ...},
-                                    speed: 0,
-                                    mileage: 0
-                                }
+                              // private methods
+                              function startEngine() {
+                                car.engineIsWorking = true;
+                              }
+
+                              return  car;
                             }
-                            ```
-                            Create an instance with
-                            ```
-                            var carInstance = Car();
-                            ```
-                        </script>
+                          }());
+                          ```
+                      </script>
+                      </section>
+                      <section data-markdown>
+                      <script type="text/template">
+                          ### Inheritance
+                          ```
+                          function Truck(name, maxWeight) {
+                              return jQuery.extend(
+                                Car(name), {
+                                  maxWeight: maxWeight
+                                });
+                            };
+                          ```
+                      </script>
                     </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Advantages
-                            - True private variables and functions
-                            - Easy to write and use
-                            - No need to write new
+                      <section data-markdown>
+                          <script type="text/template">
+                              ### Advantages
+                              - True private variables and functions
+                              - Easy to write and use
+                              - No need to write new
 
-                            ### Disadvantages
-                            - Heavy on older browsers ( New functions for each instance )
-                            - Cannot use instanceof or isPrototypeOf
-                            - Limited to mixins for inheritance
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Constructor Pattern
+                              ### Disadvantages
+                              - Heavy on older browsers ( New functions for each instance )
+                              - Cannot use instanceof or isPrototypeOf
+                              - Limited to mixins for inheritance
+                              - Can't reuse parent methods
+                          </script>
+                      </section>
+                      <section data-markdown>
+                          <script type="text/template">
+                              ### Use Case
+                              Static classes
+                              ```
+                                var ArrayHelper = (function () {
+                                  return ArrayHelper = {
+                                    compact: compact,
+                                    removeElement: removeElement
+                                  }
 
-                            ```
-                            function Car() {
-                                var wearAndTear = 0;
-                                function startEngine() {
+                                  function compact() {
                                     ...
-                                }
-
-                                function turn() {
-                                    ..
-                                }
-
-                                this.drive = function(direction) { ... };
-                                this.stop =  function() { ...};
-                                this.speed = 0;
-                                this.mileage = 0;
-                            }
-                            ```
-                            Create an instance with
-                            ```
-                            var carInstance =  new Car();
-                            ```
-                        </script>
+                                  }
+                                }())
+                              ```
+                          </script>
+                      </section>
                     </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Advantages
-                            - True private variables and functions
-                            - Easy to write and use
-                            - Can use standard javascript inheritance and mixins
 
+                    <section>
+                      <section data-markdown>
+                          <script type="text/template">
+                              ### Constructor Pattern
 
-                            ### Disadvantages
-                            - Heavy on older browsers ( New functions for each instance )
-                        </script>
+                              ```
+                              var Car = (function () {
+                                var MAX_SPEED = 80;
+
+                                return function Car(name) {
+                                  var speed = 0,
+                                    that = this;
+
+                                  this.engineIsWorking = false;
+                                  this.name = name;
+
+                                  this.drive = function() {
+                                    if (!this.engineIsWorking) {
+                                      startEngine();  
+                                    }
+                                    
+                                    return `They see me rolling, on my ${this.name}`;
+                                  };
+
+                                  function startEngine() {
+                                    that.engineIsWorking = true;
+                                  }
+                                }
+                              }());
+                              ```
+                          </script>
+                      </section>
+                      <section data-markdown> 
+                          <script type="text/template">
+                            ### Inheritance
+                            ```
+                              var Truck = (function () {
+                                function Truck (name) {
+                                  Car.call(this, name);
+                                }
+                              }());
+                              ```
+                          </script>
+                      </section>
+
+                      <section data-markdown> 
+                            <script type="text/template">
+                                ### Advantages
+                                - True private variables and functions
+                                - Easy to write and use
+                                - Can use standard javascript inheritance and mixins
+
+                                ### Disadvantages
+                                - Heavy on older browsers ( New functions for each instance )
+                                - Can't reuse parent methods
+                            </script>
+                      </section>
                     </section>
+
+                    <section>
                     <section data-markdown>
                         <script type="text/template">
                         ### Prototype Pattern
 
                         #### What is a prototype?
 
-                        A function’s prototype is the object instance that will become the prototype for all objects created using this function as a constructor.
+                        A function’s prototype is the object that will be available for all objects created using this function as a constructor.
 
-                        </script>
-                    </section>
-
-                    <section data-markdown>
-                        <script type="text/template">
-### It's just a normal Object
-```
-// *** function Object() {} ***
-
-Object.prototype --> {} .prototype --> null
-
-// What about var obj = new Object()?
-
-obj.prototype    --> {} .prototype --> null
-
-// What about function Array(length) {} ?
-								(Same as Object.prototype)
-Array.prototype  --> {} .prototype --> {} .prototype  --> null
-
-                            ```
                         </script>
                     </section>
                     <section data-markdown>
@@ -199,31 +217,53 @@ Array.prototype  --> {} .prototype --> {} .prototype  --> null
 
                         ```
                         var Car = (function() {
-                            function Car() {
-                                this.speed = 0;
-                                this.mileage = 0;
+                          var MAX_SPEED = 80;
 
-                                // Pseudo private variable
-                                this._wearAndTear = 0;
+                          function Car(name) {
+                              this.engineIsWorking = false;
+                              this.name = name;
 
-                            }
-                            function startEngine() {
-                                ...
-                            }
+                              // private variable convention
+                              this._speed = 0;
+                          }
 
-                            function turn() {
-                                ..
+                          Car.prototype.drive = function(direction) {
+                            if (!this.engineIsWorking) {
+                              startEngine.call(this);
                             }
-                            Car.prototype.drive = function(direction) { ... };
-                            Car.prototype.stop = function() { ...};
-                            Car.prototype.speed = 0;
-                            Car.prototype.mileage = 0;
+                            return `They see me rolling, on my ${this.name}`;
+                          };
+
+                          function startEngine(car) {
+                            this.engineIsWorking = true; // car.engineIsWorking = true;
+                          }
+
+                          return Car;
                         })();
                         ```
-                        Create an instance with
-                        ```
-                        var carInstance =  new Car();
-                        ```
+
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ### Inheritance
+                            ```
+                              function Truck (name) {
+                                Car.call(this, name)
+                              }
+
+                              Truck.prototype = Object.create(Car.prototype);
+                              Truck.prototype.constructor = Truck;
+                              Truck.prototype.super = Car.prototype;
+
+                              Truck.prototype.drive = function () {
+                                return this.super.drive.call(this) +
+                                  ', They hating';
+                              }
+
+                              var truck = new Truck('zil');
+                              truck.drive(); // <- They see me rolling, on my zil, They hating
+                            ```
                         </script>
                     </section>
                     <section data-markdown>
@@ -232,45 +272,9 @@ Array.prototype  --> {} .prototype --> {} .prototype  --> null
                             - Very fast and lightweight
                             - Can use standard javascript inheritance and mixins
 
-
                             ### Disadvantages
-                            - No private variables (private functions are available)
+                            - No private properties (private functions are available with 'call')
                             - More difficult to write
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Inheritance
-                            Build upon what is already available
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Single Inheritance
-                            Prototype, Prototype, Prototype
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Example
-                            Our new car
-                            ```
-                            function Truck() { }
-                            // Common mistake
-                            Truck.prototype = Car.prototype;
-                            ```
-                            What's wrong?
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Example
-                            ```
-                            function Truck() { }
-                            Truck.prototype = new Car();
-                            Truck.prototype.openTailgate = function() { ... }
-                            ...
-                            ```
                         </script>
                     </section>
                     <section data-markdown>
@@ -278,54 +282,82 @@ Array.prototype  --> {} .prototype --> {} .prototype  --> null
                             ### Make It Generic
                             ```
                             function inherit(Parent, Child) {
-                                function Temp() { this.constructor = Child; }
-                                Temp.prototype = Parent.prototype;
-                                Child.prototype = new Temp();
+                                Child.prototype = Object.create(Parent.prototype);
+                                Child.prototype.constructor = Child;
+                                Child.prototpe.super = Parent.prototype;
                             }
                             ```
                         </script>
                     </section>
-                    <section data-markdown>
+                </section>
+                    <section>
+                      <section data-markdown>
                         <script type="text/template">
-                            ### Multiple inheritance
+                          ### ES6
+                          ```
+                            var Car = (function () {
+                              const MAX_SPEED = 80;
 
-                            ##### Mix it up
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Mixin/Extend
-
-                            #### What does it look like
-                            ```
-                            // Also called extend
-                            function mixin(obj, otherObj) {
-                                for (var key in otherObj) {
-                                    obj[key] = otherObj[key];
+                              return class Car {
+                                constructor (name) {
+                                  this.engineIsWorking = false;
+                                  this.name = name;
+                                  this._speed = 0;
                                 }
-                            }
-                            ```
+
+                                get speed () { return this._speed }
+
+                                set speed (value) { 
+                                  this._speed = MAX_SPEED > value ? value : MAX_SPEED
+                                }
+
+                                drive () {
+                                  if (!this.engineIsWorking) {
+                                    this._startEngine();
+                                  }
+                                  return `They see me rolling, on my ${this.name}`;
+                                }
+
+                                _startEngine () {
+                                  this.engineIsWorking = true;
+                                }
+                              }
+                            }());
+                          ```
                         </script>
                     </section>
                     <section data-markdown>
                         <script type="text/template">
-                            #### Example
+                            ### Example
                             ```
-                            // Broadcasts events (simple pub/sub)
-                            function Broadcaster() {}
-                            Broadcaster.prototype.listen = function(event, fn) { ... };
-                            Broadcaster.prototype.broadcast = function(event, data) { ... };
-
-                            function Car() {
-                                extend(this, new Broadcaster());
-                            }
-                            Car.prototype.drive = function(direction) {
-                                if(obstruction) {
-                                    this.broadcast('error', { errorMsg: 'Obstruction!'});
-                                }
-                            }
+                            var car = new Car('ferrari');
+                            car.drive();
+                            car.speed = 120;
+                            console.log(car.speed); // <- 80
                             ```
                         </script>
+                    </section>
+                      <section data-markdown>
+                        <script type="text/template">
+                            ### Inheritance
+                            ```
+                              var Truck = (function () {
+                                return class Truck extends Car {
+                                  constructor (name) {
+                                   super(name);
+                                  }
+
+                                  drive () {
+                                    return `${super.drive()}, They hating`;
+                                  }
+                                }
+                              }());
+
+                              var truck = new Truck('zil');
+                              truck.drive(); // <- They see me rolling, on my zil, They hating
+                            ```
+                        </script>
+                    </section>
                     </section>
                 </section>
 			</div>
@@ -342,8 +374,6 @@ Array.prototype  --> {} .prototype --> {} .prototype  --> null
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
-
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
