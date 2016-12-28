@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Javascript OOP</title>
+  <title>Flex</title>
 
   <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
   <meta name="author" content="Hakim El Hattab">
@@ -72,261 +72,231 @@
         - Inline-Block
         - Float
         - Flex
-        - <s>Grid</s>
+        - <s>Grid</s> (poor support)
       </script>
     </section>
     <section data-markdown>
       <script type="text/template">
-        ### Float vs Flex
-        #### Flex
-        - Most popular way to lay things out; most grid frameworks follow this.
-        - Everyone's aware of float bugs due to the popularity of floating, and there are well documented ways to overcome them.
+        ### Let's Talk About Float
+        #### Advantages
 
+        - Most popular way to lay things out
+        - Everyone's aware of float bugs, and there are well documented ways to overcome them.
 
-        ### Disadvantages
+        #### Disadvantages
+
         - Need to be cleared
-        - No vertical centering
-        - No equal heights
+        - No centering
+        - No rows equal heights
       </script>
     </section>
     <section data-markdown>
       <script type="text/template">
-        ### Use Case
-        Static classes
+        ### Example
+        Search input and Table with users
+        ```html
+        <input type="text" placeholder="Search"/>
+        <button>Search</button>
+        <table>
+          ...
+        </table>
         ```
-        var ArrayHelper = (function () {
-        return ArrayHelper = {
-        compact: compact,
-        removeElement: removeElement
-        }
+        <img src="images/first.png" alt="">
+      </script>
+    </section>
 
-        function compact() {
-        ...
+    <section data-markdown>
+      <script type="text/template">
+        ```html
+        <input type="text" placeholder="Search"/>
+        <button class="pull-left">Search</button>
+        <table>
+          ...
+        </table>
+        ```
+        <img src="images/second.png" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ```html
+        <input class="pull-left" type="text" placeholder="Search"/>
+        <button class="pull-left">Search</button>
+        <table>
+          ...
+        </table>
+        ```
+        <img src="images/three.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ```html
+        <div class="row">
+          <input class="pull-left" type="text" placeholder="Search"/>
+          <button class="pull-left">Search</button>
+        </div>
+        <table>
+          ...
+        </table>
+        ```
+        ####WAT?
+        <img src="images/four.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ```html
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <input class="pull-left" type="text" placeholder="Search"/>
+              <button class="pull-left">Search</button>
+            </div>
+          </div>
+          <table>
+            ...
+          </table>
+        </div>
+        ```
+        #### VICTORY!
+        <img src="images/fife.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      #### "Hey guys page looks awesome, but can we make input with button 100% of page?"
+    </section>
+
+    <section>
+      <h3>The battle begins</h3>
+      <img src="https://i.imgur.com/Q3cUg29.gif" alt="">
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ```html
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <div style="display: table">
+                <input style="display: table-cell; width: 100%"/>
+                <span style="display: table-cell; width: 1%">
+                  <button class="pull-left">Search</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <table>
+            ...
+          </table>
+        </div>
+        ```
+        <img src="images/six.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        <img src="http://vignette1.wikia.nocookie.net/mlp/images/f/fd/SpongeBob_Imagination_wallpaper.jpg/revision/latest" alt="">
+        ```html
+        <div class="layout-row">
+          <input class="flex-100" type="text" placeholder="Search"/>
+          <button>Search</button>
+        </div>
+        <table>
+          ...
+        </table>
+        ```
+        <img src="images/seven.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ## Flex
+        #### Advantages
+        + Vertical and horizontal centering
+        + Flexbox can be columns or rows
+        + Boxes grow and shrink
+        + Fit to the available space however you wish
+
+        #### Disadvantages
+        + New syntax you have to learn
+        + Cross browser support
+        + You can align only columns or only rows
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ### The most awesome
+        ```css
+        .flex {
+          display: flex;
+          justify-content: flex-start|flex-end|center|space-between|space-around;
+          align-items: flex-start|flex-end|center|baseline|stretch;
         }
-        }())
+        ```
+        <div style="display: flex; justify-content: center">
+          <div>
+            <div>justify-content</div>
+            <img src="https://css-tricks.com/wp-content/uploads/2013/04/justify-content.svg" alt="">
+          </div>
+          <div>
+            <div>align-items</div>
+            <img src="https://css-tricks.com/wp-content/uploads/2014/05/align-items.svg" alt="">
+          </div>
+        </div>
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ### Angular Material Layout
+        Can do all of the bootstrap grid things plus flex magic
+
+        You can add to your project only grid itself (angular is not necessary)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ### Available Options
+        <img src="images/flex.PNG" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ### Navigation with Material Layout
+        On the right when desktop in the center when tablet and hidden when mobile
+        ```html
+        <ul class="layout layout-align-end-center layout-align-sm-space-around-center hide-xs">
+          <li>News</li>
+          <li>Cart</li>
+          <li>Profile</li>
+          <li>Help</li>
+        </ul>
         ```
       </script>
     </section>
 
-    <section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Constructor Pattern
 
-          ```
-          var Car = (function () {
-          var MAX_SPEED = 80;
-
-          return function Car(name) {
-          var speed = 0,
-          that = this;
-
-          this.engineIsWorking = false;
-          this.name = name;
-
-          this.drive = function() {
-          if (!this.engineIsWorking) {
-          startEngine();
-          }
-
-          return `They see me rolling, on my ${this.name}`;
-          };
-
-          function startEngine() {
-          that.engineIsWorking = true;
-          }
-          }
-          }());
-          ```
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Inheritance
-          ```
-          var Truck = (function () {
-          function Truck (name) {
-          Car.call(this, name);
-          }
-          }());
-          ```
-        </script>
-      </section>
-
-      <section data-markdown>
-        <script type="text/template">
-          ### Advantages
-          - True private variables and functions
-          - Easy to write and use
-          - Can use standard javascript inheritance and mixins
-
-          ### Disadvantages
-          - Heavy on older browsers ( New functions for each instance )
-          - Can't reuse parent methods
-        </script>
-      </section>
+    <section data-markdown>
+      <script type="text/template">
+        ### TODO
+        - More Examples
+        - Browsers Support
+        - Links
+        - Silver bullet
+        - Funny finish screen
+      </script>
     </section>
 
-    <section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Prototype Pattern
-
-          #### What is a prototype?
-
-          A function’s prototype is the object that will be available for all objects created using this function as a constructor.
-
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Prototype Pattern
-
-          ```
-          var Car = (function() {
-          var MAX_SPEED = 80;
-
-          function Car(name) {
-          this.engineIsWorking = false;
-          this.name = name;
-
-          // private variable convention
-          this._speed = 0;
-          }
-
-          Car.prototype.drive = function(direction) {
-          if (!this.engineIsWorking) {
-          startEngine.call(this);
-          }
-          return `They see me rolling, on my ${this.name}`;
-          };
-
-          function startEngine(car) {
-          this.engineIsWorking = true; // car.engineIsWorking = true;
-          }
-
-          return Car;
-          })();
-          ```
-
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Inheritance
-          ```
-          function Truck (name) {
-          Car.call(this, name)
-          }
-
-          Truck.prototype = Object.create(Car.prototype);
-          Truck.prototype.constructor = Truck;
-          Truck.prototype.super = Car.prototype;
-
-          Truck.prototype.drive = function () {
-          return this.super.drive.call(this) +
-          ', They hating';
-          }
-
-          var truck = new Truck('zil');
-          truck.drive(); // <- They see me rolling, on my zil, They hating
-          ```
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Advantages
-          - Very fast and lightweight
-          - Can use standard javascript inheritance and mixins
-
-          ### Disadvantages
-          - No private properties (private functions are available with 'call')
-          - More difficult to write
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Make It Generic
-          ```
-          function inherit(Parent, Child) {
-          Child.prototype = Object.create(Parent.prototype);
-          Child.prototype.constructor = Child;
-          Child.prototpe.super = Parent.prototype;
-          }
-          ```
-        </script>
-      </section>
-    </section>
-    <section>
-      <section data-markdown>
-        <script type="text/template">
-          ### ES6
-          ```
-          var Car = (function () {
-          const MAX_SPEED = 80;
-
-          return class Car {
-          constructor (name) {
-          this.engineIsWorking = false;
-          this.name = name;
-          this._speed = 0;
-          }
-
-          get speed () { return this._speed }
-
-          set speed (value) {
-          this._speed = MAX_SPEED > value ? value : MAX_SPEED
-          }
-
-          drive () {
-          if (!this.engineIsWorking) {
-          this._startEngine();
-          }
-          return `They see me rolling, on my ${this.name}`;
-          }
-
-          _startEngine () {
-          this.engineIsWorking = true;
-          }
-          }
-          }());
-          ```
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Example
-          ```
-          var car = new Car('ferrari');
-          car.drive();
-          car.speed = 120;
-          console.log(car.speed); // <- 80
-          ```
-        </script>
-      </section>
-      <section data-markdown>
-        <script type="text/template">
-          ### Inheritance
-          ```
-          var Truck = (function () {
-          return class Truck extends Car {
-          constructor (name) {
-          super(name);
-          }
-
-          drive () {
-          return `${super.drive()}, They hating`;
-          }
-          }
-          }());
-
-          var truck = new Truck('zil');
-          truck.drive(); // <- They see me rolling, on my zil, They hating
-          ```
-        </script>
-      </section>
-    </section>
-    </section>
   </div>
 </div>
 
