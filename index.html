@@ -67,7 +67,7 @@
     </section>
     <section data-markdown>
       <script type="text/template">
-        ## Type of grids
+        ## Types of grids
         - Table
         - Inline-Block
         - Float
@@ -77,11 +77,16 @@
     </section>
     <section data-markdown>
       <script type="text/template">
-        ### Let's Talk About Float
+        ### Float
         #### Advantages
 
         - Most popular way to lay things out
         - Everyone's aware of float bugs, and there are well documented ways to overcome them.
+      </script>
+    </section>
+    <section data-markdown>
+      <script type="text/template">
+        ### Float
 
         #### Disadvantages
 
@@ -223,7 +228,12 @@
         + Flexbox can be columns or rows
         + Boxes grow and shrink
         + Fit to the available space however you wish
+      </script>
+    </section>
 
+    <section data-markdown>
+      <script type="text/template">
+        ## Flex
         #### Disadvantages
         + New syntax you have to learn
         + Cross browser support
@@ -237,8 +247,8 @@
         ```css
         .flex {
           display: flex;
-          justify-content: flex-start|flex-end|center|space-between|space-around;
-          align-items: flex-start|flex-end|center|baseline|stretch;
+          justify-content: flex-start|flex-end|center|space-between|space-around; //horizontal
+          align-items: flex-start|flex-end|center|baseline|stretch; //vertical
         }
         ```
         <div style="display: flex; justify-content: center">
@@ -273,7 +283,11 @@
     <section data-markdown>
       <script type="text/template">
         ### Navigation with Material Layout
-        On the right when desktop in the center when tablet and hidden when mobile
+        On the right when desktop
+
+        in the center when tablet
+
+          hidden when mobile
         ```html
         <ul class="layout layout-align-end-center layout-align-sm-space-around-center hide-xs">
           <li>News</li>
@@ -285,14 +299,60 @@
       </script>
     </section>
 
+    <section data-markdown>
+      <script type="text/template">
+        ### Browsers Support
+        IE10+
+
+        > Beginning January 12, 2016, only the most current version of Internet Explorer available for a supported operating system will receive technical supports and security updates. Internet Explorer 11 is the last version of Internet Explorer, and will continue to receive security updates, compatibility fixes, and technical support on Windows 7, Windows 8.1, and Windows 10.
+
+        Flexbox with prefixes - 97.32%
+
+        position: fixed; - 93.9%
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
+        Implementations
+        - Angular Material
+        - Flexbox Grid
+        - Foundation
+        - Bootstrap v4
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        Links
+        - (Flexbox Guide) [https://css-tricks.com/snippets/css/a-guide-to-flexbox/]
+        - Flexbox Grid
+        - Foundation
+        - Bootstrap v4
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        <img src="http://img03.deviantart.net/a90a/i/2011/311/6/3/portal___the_cake_is_a_lie__by_caycowa-d4f8x5o.png" alt="">
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ### Not A Silver Bullet
+        - A lot of bugs especially IE
+        - You can't align both columns and rows
+        - Flexbox wasn't created for grids
+      </script>
+    </section>
+
+
+    <section data-markdown>
+      <script type="text/template">
+        <img src="http://www.jaimaaastrologer.com/wp-content/uploads/2015/04/bright-future-1.jpg" alt="">
         ### TODO
-        - More Examples
-        - Browsers Support
         - Links
-        - Silver bullet
         - Funny finish screen
       </script>
     </section>
