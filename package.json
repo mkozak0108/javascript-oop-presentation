@@ -6,16 +6,8 @@
   "subdomain": "revealjs",
   "scripts": {
     "test": "grunt test",
+    "build": "grunt build",
     "start": ""
-  },
-  "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
   },
   "engines": {
     "node": "~0.8.0"

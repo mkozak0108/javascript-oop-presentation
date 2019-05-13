@@ -38,106 +38,73 @@
 			<div class="slides">
                     <section data-markdown>
                         <script type="text/template">
-                            # Javascript OOP
-
-                            #### Creating Objects and Inheritance
-
+                            # Monorepository
 
                         </script>
                     </section>
                     <section data-markdown>
                         <script type="text/template">
-                            #### JavaScript is an object-based language based on prototypes, rather than being class-based.
-                            That means that javascript doesnt have classes or instances like other languages, it simply has objects
+                            ## What is Monorepo?
+                            A repository that contains multiple packages or projects.
+                            Those projects can, but don't have to be related. Most famous monorepo pioneers are Google, Facebook and Twitter.
                         </script>
                     </section>
-                    <section  data-markdown>
-                        <script type="text/template">
-                            ### There are three popular patterns for simulating classes
-                            - Functional/Module Pattern
-                            - Constructor Pattern
-                            - Prototype Pattern
-                        </script>
+                    <section data-markdown>
+                      <script type="text/template">
+                        ## Why to bother?
+
+                        #### On current stage our webapp-proto use webapp-customer as a module. Reused parts are:
+
+                        - mapbox styles (rasters, icons, vectiles, ect.)
+                        - firebase services (how to get/update/delete entities from firebase)
+                        - feed components
+                        - helper functions
+                      </script>
                     </section>
                     <section>
                       <section data-markdown>
-                      <script type="text/template">
-                          ### Functional/Module Pattern
+                        <script type="text/template">
+                          ### What it takes to change something
                           ```
-                          var Car = (function () {
-                            var MAX_SPEED = 80;
+                          cd webapp-customer
+                          npm install
+                          npm run serve
+                          // change the code
+                          git add .
+                          git commit -m "change something"
+                          git push
+                          npm run deploy-stage
 
-                            return function Car(name) {
-                              var car = { 
-                                    name: name,
-                                    drive: drive
-                                  },
-                                speed = 0;
-
-                              // public methods
-                              function drive() {
-                                if (!car.engineIsWorking) {
-                                  startEngine();
-                                }
-
-                                return `They see me rolling, on my ${car.name}`
-                              }
-
-                              // private methods
-                              function startEngine() {
-                                car.engineIsWorking = true;
-                              }
-
-                              return  car;
-                            }
-                          }());
+                          cd webapp-proto
+                          npm install
+                          npm run serve
+                          // change the code
+                          git add .
+                          git commit -m "change something"
+                          git push
+                          npm run deploy-stage
                           ```
-                      </script>
+                        </script>
                       </section>
                       <section data-markdown>
-                      <script type="text/template">
-                          ### Inheritance
-                          ```
-                          function Truck(name, maxWeight) {
-                              return jQuery.extend(
-                                Car(name), {
-                                  maxWeight: maxWeight
-                                });
-                            };
-                          ```
-                      </script>
-                    </section>
-                      <section data-markdown>
-                          <script type="text/template">
-                              ### Advantages
-                              - True private variables and functions
-                              - Easy to write and use
-                              - No need to write new
-
-                              ### Disadvantages
-                              - Heavy on older browsers ( New functions for each instance )
-                              - Cannot use instanceof or isPrototypeOf
-                              - Limited to mixins for inheritance
-                              - Can't reuse parent methods
-                          </script>
+                        <script type="text/template">
+                          <img src="https://media1.giphy.com/media/3orifgLo0adX1ePM3u/giphy.gif" alt="">
+                        </script>
                       </section>
                       <section data-markdown>
-                          <script type="text/template">
-                              ### Use Case
-                              Static classes
-                              ```
-                                var ArrayHelper = (function () {
-                                  return ArrayHelper = {
-                                    compact: compact,
-                                    removeElement: removeElement
-                                  }
-
-                                  function compact() {
-                                    ...
-                                  }
-                                }())
-                              ```
-                          </script>
+                        <script type="text/template">
+                          ### How it could be
+                          ```
+                          cd seetree
+                          npm install
+                          npm run serve
+                          // do changes
+                          git add .
+                          git commit -m "change something"
+                          git push
+                          npm run deploy-stage
+                          ```
+                        </script>
                       </section>
                     </section>
 
@@ -159,9 +126,9 @@
 
                                   this.drive = function() {
                                     if (!this.engineIsWorking) {
-                                      startEngine();  
+                                      startEngine();
                                     }
-                                    
+
                                     return `They see me rolling, on my ${this.name}`;
                                   };
 
@@ -173,7 +140,7 @@
                               ```
                           </script>
                       </section>
-                      <section data-markdown> 
+                      <section data-markdown>
                           <script type="text/template">
                             ### Inheritance
                             ```
@@ -186,7 +153,7 @@
                           </script>
                       </section>
 
-                      <section data-markdown> 
+                      <section data-markdown>
                             <script type="text/template">
                                 ### Advantages
                                 - True private variables and functions
@@ -307,7 +274,7 @@
 
                                 get speed () { return this._speed }
 
-                                set speed (value) { 
+                                set speed (value) {
                                   this._speed = MAX_SPEED > value ? value : MAX_SPEED
                                 }
 
