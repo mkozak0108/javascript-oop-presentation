@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Javascript OOP</title>
+		<title>Monorepository</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -36,24 +36,26 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-                    <section data-markdown>
+                    <section data-markdown data-background-image="https://f4.bcbits.com/img/a0268146037_10.jpg" data-background-size="contain">
                         <script type="text/template">
                             # Monorepository
-
                         </script>
                     </section>
                     <section data-markdown>
-                        <script type="text/template">
-                            ## What is Monorepo?
-                            A repository that contains multiple packages or projects.
-                            Those projects can, but don't have to be related. Most famous monorepo pioneers are Google, Facebook and Twitter.
-                        </script>
+                      <script type="text/template">
+                          ## What is Monorepo?
+                          A repository that contains multiple packages or projects.
+                          Those projects can, but don't have to be related. Most famous monorepo pioneers are Google, Facebook and Twitter.
+                      </script>
+                    </section>
+                    <section data-background-size="70%" data-background-image="https://mkozak0108.github.io/javascript-oop-presentation/babel.PNG">
+                      <h2 style="margin-top: -35%;">Example</h2>
                     </section>
                     <section data-markdown>
                       <script type="text/template">
                         ## Why to bother?
 
-                        #### On current stage our webapp-proto use webapp-customer as a module. Reused parts are:
+                        #### webapp-proto use webapp-customer as a module. Reused parts are:
 
                         - mapbox styles (rasters, icons, vectiles, ect.)
                         - firebase services (how to get/update/delete entities from firebase)
@@ -86,10 +88,7 @@
                           ```
                         </script>
                       </section>
-                      <section data-markdown>
-                        <script type="text/template">
-                          <img src="https://media1.giphy.com/media/3orifgLo0adX1ePM3u/giphy.gif" alt="">
-                        </script>
+                      <section data-background-image="https://media1.giphy.com/media/3orifgLo0adX1ePM3u/giphy.gif" data-background-size="contain">
                       </section>
                       <section data-markdown>
                         <script type="text/template">
@@ -111,222 +110,76 @@
                     <section>
                       <section data-markdown>
                           <script type="text/template">
-                              ### Constructor Pattern
+                              ### Pros
 
-                              ```
-                              var Car = (function () {
-                                var MAX_SPEED = 80;
-
-                                return function Car(name) {
-                                  var speed = 0,
-                                    that = this;
-
-                                  this.engineIsWorking = false;
-                                  this.name = name;
-
-                                  this.drive = function() {
-                                    if (!this.engineIsWorking) {
-                                      startEngine();
-                                    }
-
-                                    return `They see me rolling, on my ${this.name}`;
-                                  };
-
-                                  function startEngine() {
-                                    that.engineIsWorking = true;
-                                  }
-                                }
-                              }());
-                              ```
+                              - collaboration across teams
+                              - large scale refactoring, code base modernization
+                                - old APIs can be removed with confidence
+                                - supports gradual refactoring and re-organisation of the codebase
+                                - rename a class or function in a single commit, with no broken builds or tests
+                              - simplified dependency management
+                                - monolithic codebase captures all dependency information
+                                - diamond dependency problem: one person updating a library will update all the dependent code as well
+                              - atomic changes
+                                - change of hundreds/thousands of files in a single consistent operation
                           </script>
                       </section>
                       <section data-markdown>
                           <script type="text/template">
-                            ### Inheritance
-                            ```
-                              var Truck = (function () {
-                                function Truck (name) {
-                                  Car.call(this, name);
-                                }
-                              }());
-                              ```
+                            ### Cons
+
+                            - build/test time
+                            - complex codebase
+                              - unreasonable for a single developer to have the entire repository on their machine
+                              - difficult to search and index code
+                            - tight coupling
+                            - VCS scalability
                           </script>
                       </section>
-
-                      <section data-markdown>
-                            <script type="text/template">
-                                ### Advantages
-                                - True private variables and functions
-                                - Easy to write and use
-                                - Can use standard javascript inheritance and mixins
-
-                                ### Disadvantages
-                                - Heavy on older browsers ( New functions for each instance )
-                                - Can't reuse parent methods
-                            </script>
-                      </section>
                     </section>
-
-                    <section>
-                    <section data-markdown>
-                        <script type="text/template">
-                        ### Prototype Pattern
-
-                        #### What is a prototype?
-
-                        A function’s prototype is the object that will be available for all objects created using this function as a constructor.
-
-                        </script>
+                    <section data-markdown style="font-size: 20px;">
+                      <script type="text/template">
+                          ## Tools
+                          * [baur](https://github.com/simplesurance/baur) builds only changed applications in a monorepo branch and manages build artifacts
+                          * [Bazel](https://bazel.build) is Google's monorepo-oriented build system. More on Bazel: [awesome-bazel](https://github.com/jin/awesome-bazel)
+                          * [Buck](https://buckbuild.com/) is Facebook's monorepo-oriented build system.
+                          * [Please](https://please.build/index.html) a cross-language build system with an emphasis on high performance, extensibility and reproduceability.
+                          * [Pants](http://www.pantsbuild.org/) is a monorepo-oriented build system, used by Twitter, Foursquare and multiple other companies.
+                          * [Yarn](https://yarnpkg.com/blog/2017/08/02/introducing-workspaces/) is a JavaScript dependency management tool that supports monorepos through workspaces.
+                          * [pnpm](https://pnpm.js.org/en/) is a JavaScript dependency management tool that supports monorepos through a set of dedicated commands called `pnpm multi`.
+                          * [Lerna](https://lernajs.io/) is a tool for managing JavaScript projects with multiple packages, built on Yarn.
+                          * [OAO](https://github.com/guigrpa/oao) is a Yarn-based, opinionated JavaScript monorepo management tool.
+                          * [MBT](https://github.com/mbtproject/mbt) is a build tool with differential build support.
+                          * [Bolt Pkg](https://github.com/boltpkg/bolt) is a super-powered JavaScript project management.
+                          * [GitLab CI](https://gitlab.com/gitlab-org/gitlab-ce/issues/19232) 11.4 supports running steps based on path changes.
+                      </script>
                     </section>
                     <section data-markdown>
-                        <script type="text/template">
-                        ### Prototype Pattern
+                      <script type="text/template">
+                        ## Conclusion
 
-                        ```
-                        var Car = (function() {
-                          var MAX_SPEED = 80;
-
-                          function Car(name) {
-                              this.engineIsWorking = false;
-                              this.name = name;
-
-                              // private variable convention
-                              this._speed = 0;
-                          }
-
-                          Car.prototype.drive = function(direction) {
-                            if (!this.engineIsWorking) {
-                              startEngine.call(this);
-                            }
-                            return `They see me rolling, on my ${this.name}`;
-                          };
-
-                          function startEngine(car) {
-                            this.engineIsWorking = true; // car.engineIsWorking = true;
-                          }
-
-                          return Car;
-                        })();
-                        ```
-
-                        </script>
+                        At first monorepository seems like silver bullet for projects with multiple products.
+                        But you should consider that it is impossible to work with on large scale, until you don't
+                        have impressive tools like Google, Facebook etc.
+                        The difference between multi-repository and monorepository is not relevant if you have good architecture and team collaboration.
+                      </script>
+                    </section>
+                    <section data-markdown data-background-size="contain" data-background-image="http://www.tuteate.com/wp-content/uploads/2014/09/manos-alzadas.jpg">
+                      <script type="text/template">
+                        # Questions
+                      </script>
                     </section>
                     <section data-markdown>
-                        <script type="text/template">
-                            ### Inheritance
-                            ```
-                              function Truck (name) {
-                                Car.call(this, name)
-                              }
+                      <script type="text/template">
+                        ## Articles and presentations
 
-                              Truck.prototype = Object.create(Car.prototype);
-                              Truck.prototype.constructor = Truck;
-                              Truck.prototype.super = Car.prototype;
-
-                              Truck.prototype.drive = function () {
-                                return this.super.drive.call(this) +
-                                  ', They hating';
-                              }
-
-                              var truck = new Truck('zil');
-                              truck.drive(); // <- They see me rolling, on my zil, They hating
-                            ```
-                        </script>
+                        * [Monorepos in the Wild](https://medium.com/@maoberlehner/monorepos-in-the-wild-33c6eb246cb9)
+                        * [Monorepo vs many repos](https://www.slideshare.net/julienbisconti/monorepo-vs-many-repos)
+                        * [Master the Monorepo](https://www.slideshare.net/RomanMinchyn/master-the-monorepo-113064925)
+                        * [Mono-Repos @ Google. Are they worth it?](https://medium.com/@pejvan/monorepos-85e608d43b57)
+                        * [Monorepos: Please don’t!](https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b)
+                      </script>
                     </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Advantages
-                            - Very fast and lightweight
-                            - Can use standard javascript inheritance and mixins
-
-                            ### Disadvantages
-                            - No private properties (private functions are available with 'call')
-                            - More difficult to write
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Make It Generic
-                            ```
-                            function inherit(Parent, Child) {
-                                Child.prototype = Object.create(Parent.prototype);
-                                Child.prototype.constructor = Child;
-                                Child.prototpe.super = Parent.prototype;
-                            }
-                            ```
-                        </script>
-                    </section>
-                </section>
-                    <section>
-                      <section data-markdown>
-                        <script type="text/template">
-                          ### ES6
-                          ```
-                            var Car = (function () {
-                              const MAX_SPEED = 80;
-
-                              return class Car {
-                                constructor (name) {
-                                  this.engineIsWorking = false;
-                                  this.name = name;
-                                  this._speed = 0;
-                                }
-
-                                get speed () { return this._speed }
-
-                                set speed (value) {
-                                  this._speed = MAX_SPEED > value ? value : MAX_SPEED
-                                }
-
-                                drive () {
-                                  if (!this.engineIsWorking) {
-                                    this._startEngine();
-                                  }
-                                  return `They see me rolling, on my ${this.name}`;
-                                }
-
-                                _startEngine () {
-                                  this.engineIsWorking = true;
-                                }
-                              }
-                            }());
-                          ```
-                        </script>
-                    </section>
-                    <section data-markdown>
-                        <script type="text/template">
-                            ### Example
-                            ```
-                            var car = new Car('ferrari');
-                            car.drive();
-                            car.speed = 120;
-                            console.log(car.speed); // <- 80
-                            ```
-                        </script>
-                    </section>
-                      <section data-markdown>
-                        <script type="text/template">
-                            ### Inheritance
-                            ```
-                              var Truck = (function () {
-                                return class Truck extends Car {
-                                  constructor (name) {
-                                   super(name);
-                                  }
-
-                                  drive () {
-                                    return `${super.drive()}, They hating`;
-                                  }
-                                }
-                              }());
-
-                              var truck = new Truck('zil');
-                              truck.drive(); // <- They see me rolling, on my zil, They hating
-                            ```
-                        </script>
-                    </section>
-                    </section>
-                </section>
 			</div>
 		</div>
 
